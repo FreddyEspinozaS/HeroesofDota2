@@ -1,10 +1,22 @@
 package com.example.fredd.heroesofdota2.Entities;
 
+import com.example.fredd.heroesofdota2.ClearbitLogoApiService;
+
 import java.util.ArrayList;
+
+import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
 public class Hero {
 
-    public Hero(int idHero, String name, String localized_name, String primary_attr, String attack_type, ArrayList<String> roles, int legs) {
+    public String getURLIcon() {
+        return URLIcon;
+    }
+
+    public void setURLIcon(String URLIcon) {
+        this.URLIcon = URLIcon;
+    }
+
+    public Hero(int idHero, String name, String localized_name, String primary_attr, String attack_type, ArrayList<String> roles, int legs, String URLIcon) {
         this.idHero = idHero;
         this.name = name;
         this.localized_name = localized_name;
@@ -12,8 +24,12 @@ public class Hero {
         this.attack_type = attack_type;
         this.roles = roles;
         this.legs = legs;
+        this.URLIcon = URLIcon;
     }
 
+    public String getUrlToLogo(){
+        return ClearbitLogoApiService.getUrlToLogo(URLIcon);
+    }
     public int getIdHero() {
         return idHero;
     }
@@ -77,6 +93,7 @@ public class Hero {
     private String attack_type;
     private ArrayList<String> roles;
     private int legs;
+    private String URLIcon;
 
 
 }

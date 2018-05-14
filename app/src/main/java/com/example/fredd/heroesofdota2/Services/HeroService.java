@@ -20,7 +20,7 @@ public class HeroService implements IHeroService {
 
         try {
             URL apiUrl =
-                    new URL("https://api.opendota.com/api/heroes");
+                    new URL("https://api.opendota.com/api/heroStats");
 
             //Create connection
             HttpURLConnection myConnection = (HttpURLConnection) apiUrl.openConnection();
@@ -53,6 +53,7 @@ public class HeroService implements IHeroService {
                     String primary_attr =null;
                     String attack_type = null;
                     ArrayList<String> roles = new ArrayList<>();
+                    String URLIcon = null;
                     int legs = 0;
                     while (jsonReader.hasNext()){
                         String property = jsonReader.nextName();
@@ -81,6 +82,9 @@ public class HeroService implements IHeroService {
                                 // End reading roles array
                                 jsonReader.endArray();
                                 break;
+                            case "icon":
+                                URLIcon = jsonReader.nextString();
+                                break;
                             case "legs":
                                 legs = jsonReader.nextInt();
                                 break;
@@ -90,7 +94,8 @@ public class HeroService implements IHeroService {
                         }
                     }
                     // Add item to the list
-                    Hero objHero = new Hero(id, name, localized_name, primary_attr, attack_type,roles,legs);
+                    URLIcon = "https://api.opendota.com" + URLIcon;
+                    Hero objHero = new Hero(id, name, localized_name, primary_attr, attack_type,roles,legs, URLIcon);
                     heroArrayList.add(objHero);
                     jsonReader.endObject();
                 }

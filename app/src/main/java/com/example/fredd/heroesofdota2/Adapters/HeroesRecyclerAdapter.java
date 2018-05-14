@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.androidnetworking.widget.ANImageView;
 import com.example.fredd.heroesofdota2.Entities.Hero;
 import com.example.fredd.heroesofdota2.R;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 public class HeroesRecyclerAdapter extends RecyclerView.Adapter<HeroesRecyclerAdapter.ViewHolder> {
     ArrayList<Hero> heroArrayList;
+
 
     public HeroesRecyclerAdapter(ArrayList<Hero> heroArrayList) {
         this.heroArrayList = heroArrayList;
@@ -30,7 +32,9 @@ public class HeroesRecyclerAdapter extends RecyclerView.Adapter<HeroesRecyclerAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         holder.nameHeroTextView.setText(heroArrayList.get(position).getLocalized_name());
+        holder.iconHeroANImageView.setImageUrl(heroArrayList.get(position).getURLIcon());
     }
 
     @Override
@@ -38,11 +42,11 @@ public class HeroesRecyclerAdapter extends RecyclerView.Adapter<HeroesRecyclerAd
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameHeroTextView;
-        ImageView iconHeroImageView;
+        ANImageView iconHeroANImageView;
         public ViewHolder(View itemView) {
             super(itemView);
             nameHeroTextView = itemView.findViewById(R.id.nameHeroTextView);
-            iconHeroImageView = itemView.findViewById(R.id.iconHeroImageView);
+            iconHeroANImageView = (ANImageView) itemView.findViewById(R.id.iconHeroANImageView);
         }
     }
 }
