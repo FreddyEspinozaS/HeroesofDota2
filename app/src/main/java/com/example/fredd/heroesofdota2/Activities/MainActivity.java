@@ -7,16 +7,25 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.fredd.heroesofdota2.Adapters.FavoritesRecyclerAdapter;
+import com.example.fredd.heroesofdota2.Adapters.HeroesRecyclerAdapter;
 import com.example.fredd.heroesofdota2.Fragments.FavoritesFragment;
+import com.example.fredd.heroesofdota2.Fragments.HeroFragment;
 import com.example.fredd.heroesofdota2.Fragments.HeroesFragment;
 import com.example.fredd.heroesofdota2.R;
 
 public class MainActivity extends AppCompatActivity
         implements HeroesFragment.OnFragmentInteractionListener,
-        FavoritesFragment.OnFragmentInteractionListener{
+        FavoritesFragment.OnFragmentInteractionListener,
+        HeroesRecyclerAdapter.OnClickHeroListener,
+        HeroesRecyclerAdapter.OnFragmentInteractionListener,
+        HeroFragment.OnFragmentInteractionListener,
+        FavoritesRecyclerAdapter.OnClickFavoriteListener,
+        FavoritesRecyclerAdapter.OnFragmentInteractionListener{
 
     private TextView mTextMessage;
 
@@ -27,10 +36,10 @@ public class MainActivity extends AppCompatActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_heroes:
-                    //mTextMessage.setText(R.string.title_heores);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HeroesFragment()).commit();
                     return true;
                 case R.id.navigation_favorites:
-                    //mTextMessage.setText(R.string.title_favorites);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FavoritesFragment()).commit();
                     return true;
             }
             UpdateFragment(item);
@@ -72,8 +81,37 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+
+    public void OpenHeroFragment(){
+        HeroFragment heroFragment = new HeroFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,heroFragment)
+                .addToBackStack("back_to_list_heroes")
+                .commit();
+    }
+
+    public void OpenFavoriteFragment(){
+        Fragment heroFragment = new HeroFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,heroFragment)
+                .addToBackStack("back_to_list_heroes")
+                .commit();
+    }
+
     @Override
     public void onFragmentInteraction(Uri uri) {
+        Log.d("fragment interaction", uri.getPath());
+    }
 
+    @Override
+    public void onClickHeroListener() {
+        this.OpenHeroFragment();
+    }
+
+    @Override
+    public void onClickFavoriteListener() {
+        this.OpenFavoriteFragment();
     }
 }

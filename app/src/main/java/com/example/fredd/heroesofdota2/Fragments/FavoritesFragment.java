@@ -4,11 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fredd.heroesofdota2.Adapters.FavoritesRecyclerAdapter;
+import com.example.fredd.heroesofdota2.Entities.Hero;
 import com.example.fredd.heroesofdota2.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +33,9 @@ public class FavoritesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    RecyclerView recyclerFavorites;
+    ArrayList<Hero> favoritesArrayList;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,8 +73,25 @@ public class FavoritesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorites, container, false);
+        View view = inflater.
+                inflate(R.layout.fragment_favorites, container, false);
+
+        recyclerFavorites = view.findViewById(R.id.recycler_favorites);
+
+
+
+
+
+                favoritesArrayList = (ArrayList) Hero.listAll(Hero.class);
+                recyclerFavorites.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                FavoritesRecyclerAdapter heroesRecyclerAdapter =
+                        new FavoritesRecyclerAdapter(favoritesArrayList);
+                recyclerFavorites.setAdapter(heroesRecyclerAdapter);
+
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

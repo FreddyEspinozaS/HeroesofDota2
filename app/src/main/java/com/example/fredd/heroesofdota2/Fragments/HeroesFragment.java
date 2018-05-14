@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.fredd.heroesofdota2.Adapters.HeroesRecyclerAdapter;
 import com.example.fredd.heroesofdota2.Entities.Hero;
@@ -37,6 +39,8 @@ public class HeroesFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private  OnClickHeroListener clickHeroListener;
 
     RecyclerView recyclerHeroes;
     ArrayList<Hero> heroArrayList;
@@ -76,9 +80,13 @@ public class HeroesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.
-                fragment_heroes, container, false);
+
+        View view = inflater.
+                inflate(R.layout.fragment_heroes, container, false);
+
         recyclerHeroes = view.findViewById(R.id.recycler_heroes);
+        //Hero heroX = new Hero();
+
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -92,6 +100,7 @@ public class HeroesFragment extends Fragment {
                 recyclerHeroes.setAdapter(heroesRecyclerAdapter);
             }
         });
+
         return view;
     }
 
@@ -111,6 +120,8 @@ public class HeroesFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+
+
     }
 
     @Override
@@ -133,4 +144,10 @@ public class HeroesFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public interface OnClickHeroListener{
+        void onClickHeroListener();
+    }
+
+
 }

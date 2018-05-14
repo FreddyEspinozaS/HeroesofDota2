@@ -1,12 +1,18 @@
 package com.example.fredd.heroesofdota2.Entities;
 
+import android.os.Bundle;
+
 import com.example.fredd.heroesofdota2.ClearbitLogoApiService;
+import com.orm.SugarRecord;
 
 import java.util.ArrayList;
 
 import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
-public class Hero {
+public class Hero extends SugarRecord<Hero> {
+
+    public Hero() {
+    }
 
     public String getURLIcon() {
         return URLIcon;
@@ -94,6 +100,19 @@ public class Hero {
     private ArrayList<String> roles;
     private int legs;
     private String URLIcon;
+
+    public Bundle toBundle(){
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", idHero);
+        bundle.putString("name",name);
+        bundle.putString("primary_attr",primary_attr);
+        bundle.putString("localized_name",localized_name);
+        bundle.putString("attack_type",attack_type);
+        bundle.putStringArrayList("roles",roles);
+        bundle.putInt("legs",legs);
+        bundle.putString("localized_name",localized_name);
+        return bundle;
+    }
 
 
 }

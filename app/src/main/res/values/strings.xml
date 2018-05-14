@@ -9,4 +9,10 @@
     <string name="title_heores">Heores</string>
     <string name="title_favorites">Favorites</string>
     <string name="name_hero">Name hero</string>
+    <string name="insert_name_hero">Insert name hero</string>
+    <string name="atributo_primario">Atributo primario:</string>
+    <string name="inserte_atributo">Inserte atributo</string>
+    <string name="attack_type">Attack type</string>
+    <string name="insert_atack_type">Insert atack type</string>
+    <string name="insert_attribute">Insert_attribute</string>
 </resources>

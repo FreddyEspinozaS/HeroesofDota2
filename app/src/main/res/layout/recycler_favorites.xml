@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recycler_hero_linear"
+    android:id="@+id/recycler_favorite_linear"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -18,7 +18,7 @@
 
 
         <com.androidnetworking.widget.ANImageView
-            android:id="@+id/iconHeroANImageView"
+            android:id="@+id/iconFavoriteANImageView"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_gravity="fill_horizontal"
@@ -26,7 +26,7 @@
             android:src="@drawable/dota2" />
 
         <TextView
-            android:id="@+id/nameHeroTextView"
+            android:id="@+id/nameFavoriteTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"

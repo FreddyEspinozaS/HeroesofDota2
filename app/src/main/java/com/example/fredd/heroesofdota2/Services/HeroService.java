@@ -96,6 +96,7 @@ public class HeroService implements IHeroService {
                     // Add item to the list
                     URLIcon = "https://api.opendota.com" + URLIcon;
                     Hero objHero = new Hero(id, name, localized_name, primary_attr, attack_type,roles,legs, URLIcon);
+                    objHero.save();
                     heroArrayList.add(objHero);
                     jsonReader.endObject();
                 }
